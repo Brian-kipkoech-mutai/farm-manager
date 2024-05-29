@@ -52,7 +52,7 @@ const Nav=({onBtnClick})=>{
          </section>
 
          <section>
-  <Dialog className='rounded-lg   max-w-sm m-2' open={isDialogueOpen} onOpenChange={setDialogueState}>
+  <Dialog className='rounded-lg   max-w-sm' open={isDialogueOpen} onOpenChange={setDialogueState}>
   <DialogTrigger onClick={()=>setDialogueState(true)}>
    <div className='flex flex-col gap-2' >
   <FontAwesomeIcon icon={faList} className='text-xl text-green-600 hover:text-green-500 active:text-green-900 hover:cursor-pointer' /> 
