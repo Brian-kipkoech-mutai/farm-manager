@@ -9,13 +9,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-// import { useTheme } from "@/components/theme-provider"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@radix-ui/react-label"
+import { Input } from "./ui/input"
+
 const ProfilePs =()=>{
   return(
     <div className="h-full p-2 max-w-sm w-full mx-auto flex flex-col gap-4 ">
        <section className="w-full flex  flex-col gap-4 ">
    <header className="mx-auto w-fit text-xl text-slate-800 ">Account</header>
-       <section className="flex justify-between items-center">
+       <section className="flex justify-between ">
        <section>
        <Avatar className='w-20 h-20 mb-2'>
   <AvatarImage src="https://github.com/shadcn.png" />
@@ -50,9 +69,60 @@ const ProfilePs =()=>{
        </section>
 
        </section>
-       <section>
+       <section className="flex-1 overflow-auto flex flex-col ">
         <h2 className="text-center text-lg font-medium text-slate-800">Manage Workers</h2>
+        <Table>
+   
+  <TableHeader>
+    <TableRow className=''>
+      <TableHead className="">Name</TableHead>
+      <TableHead className="text-end "> <span className="pr-4"> Action</span></TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody className='overflow-auto  flex-1'>
+   {
+    ['Daizy','Joan','Diana',"Mary"].map((name)=>(
+      
+    <TableRow>
+      <TableCell className="font-medium">{name}</TableCell>
+      <TableCell className="font-medium text-end"><Button className='hover:bg-red-600 bg-red-500 active:bg-red'>Delete</Button></TableCell>
+       
+       
+    </TableRow>
+   
+    ))
+   }
+   </TableBody>
+    
+</Table>
+
        </section>
+       <section>
+       <Dialog>
+  <DialogTrigger>
+  <Button  className='active:bg-green-800 mb-3'>Add new employee</Button>
+
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Employee Onboarding</DialogTitle>
+      <DialogDescription>
+         Fill in the new employee Data belo
+      </DialogDescription>
+    </DialogHeader>
+    <div className=" flex flex-col gap-4">
+    <section>
+      <Label htmlFor="new-employee-name">name</Label>
+      <Input id='new-employee-name'></Input>
+    </section>
+    <section className="flex justify-between gap-2">
+    <Button className='flex-1 bg-transparent hover:bg-green-100  text-slate-800  active:bg-green-800 active:text-white'>Cancel</Button>
+      <Button className='flex-1 active:bg-green-800' >Confirm</Button>
+    </section>
+    </div>
+  </DialogContent>
+</Dialog>
+        </section>
     </div>
   )
 }
