@@ -20,7 +20,7 @@ import {
   return(
     <div>
   
-  <Accordion type="single" collapsible className="mx-auto max-w-md">
+  <Accordion type="single" collapsible className="mx-auto max-w-sm m-2">
    {
     Array.from(['Daizy','Joan','Nancy,','daizy'],(name,i)=>(
       <AccordionItem value={`item${i+1}`}  >

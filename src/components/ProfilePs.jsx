@@ -98,7 +98,7 @@ const ProfilePs =()=>{
 
        </section>
        <section>
-       <Dialog>
+       <Dialog className='max-w-sm m-2'>
   <DialogTrigger>
   <Button  className='active:bg-green-800 mb-3'>Add new employee</Button>
 

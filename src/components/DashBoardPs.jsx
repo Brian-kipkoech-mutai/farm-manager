@@ -7,7 +7,7 @@ import DayCard from "./DayCardPs";
 
 const DashBoard=()=>{
     return(
-    <div className=" flex flex-col mx-auto gap-2 w-full text-grey-800 max-w-sm h-full">
+    <div className=" flex flex-col mx-auto gap-2 w-full text-grey-800 max-w-sm h-full m-2">
         <div className="text-2xl text-grey-800  w-full  ">Payment</div>
          <section className="grid grid-cols-2 gap-2 w-full max-w-sm ">
          <div className="bg-green-100 rounded-lg p-2  grid place-items-center border border-green-300  "><section>total this week </section>

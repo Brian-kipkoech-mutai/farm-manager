@@ -18,7 +18,7 @@ function App() {
     
 
   return (
-    < div className="h-svh flex  flex-col  ">
+    < div className="h-svh flex  flex-col p-2">
      <div className="flex-1 overflow-auto overflow-x-hidden ">
       
      {
