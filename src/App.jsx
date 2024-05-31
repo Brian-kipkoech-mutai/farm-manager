@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button"
-import DashBoard from "./components/DashBoardPs"
+
+ 
 import Payouts from "./components/PayoutPs"
 import Nav from "./components/NavPs"
 import { useState } from "react"
-import ProfilePs from "./components/ProfilePs"
+ 
 import ProfileCn from "./Containers/ProfileCn"
+ 
+import DashboardCn from "./Containers/DashboardCn"
  
  
  
@@ -23,7 +25,7 @@ function App() {
      <div className="flex-1 overflow-auto overflow-x-hidden ">
       
      {
-      activeIndex==0?<DashBoard/>:activeIndex==1?<Payouts/>:<ProfileCn/>
+      activeIndex==0?<DashboardCn/>:activeIndex==1?<Payouts/>:<ProfileCn/>
      }
         
      </div>

@@ -8,7 +8,7 @@ const ProfileCn=()=>{
 
      const[inputValue,setValue]=useState('');
      const[newUser,setUser]=useState('');
-     const [dataSetMain,setDataSetMain]=useState([]);
+      
      const [usersData,setUsersData]=useState([]);
      
 
@@ -18,9 +18,9 @@ const ProfileCn=()=>{
   
    const fetchData=()=>{
             const dataSet= localStorage.getItem('dataSet');
-                const pasredData= JSON.parse(dataSet)||[];
-               setDataSetMain(pasredData);
-                return pasredData;
+            const pasredData= JSON.parse(dataSet)||[];
+               
+            return pasredData;
             }
 
    const handleSubmit=()=>{
@@ -45,28 +45,33 @@ const ProfileCn=()=>{
           
               
              
-            userTemplate.id=fetchData().length;
+            userTemplate.id=`${fetchData().length}${inputValue}`;
             userTemplate.username=inputValue;
         
             const updatedDataSet=[...fetchData(),userTemplate];
             localStorage.setItem('dataSet',JSON.stringify(updatedDataSet))
          
         }
+        
+        const userFilterdData=()=>{
+            return fetchData().map(({id:userId,username})=>({userId,username}))
+        
+        }
     const handleDelete=(id)=>{
         console.log(id);
-        fetchData();
-        const filterdData= dataSetMain.filter(({id:userId})=> userId!=id);
+         ;
+        const filterdData=fetchData().filter(({id:userId})=> userId!=id);
+       
         localStorage.setItem('dataSet',JSON.stringify(filterdData))
+         setUsersData(userFilterdData())
         
-    
     }
         
 
      useEffect(()=>{
         
-            const usersData=fetchData().map(({id:userId,username})=>({userId,username}))
-        console.log(usersData);
-           setUsersData(usersData)
+            
+        setUsersData(userFilterdData())
 
 
      },[newUser])

@@ -36,11 +36,9 @@ import {
  
 
 
-  const EntryDialogue=({kilo, date,setKilo,SetDate,setUserInfo,hadleSubmit})=>{
-    // const [date, setDate] = useState(new Date())
-  //  const[kilo,setKilo]=useState('')
-   const[isDialogueOpen,setDialogueState]=useState(false)
-    return(
+  const EntryDialogue=({kilo, date,setKilo,SetDate,handleValueChage,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,value})=>{
+     
+     return(
 
         <Dialog className='rounded-lg   max-w-sm' open={isDialogueOpen} onOpenChange={setDialogueState}>
         <DialogTrigger onClick={()=>setDialogueState(true)}>
@@ -58,7 +56,7 @@ import {
           <div className='flex flex-col gap-2'>
             <div>
             <Label htmlFor='kilos'>Kilo <span>(kg)</span></Label>
-             <Input id='kilos' type='text' onChange={(e)=>setKilo(e.target.value)}  value={kilo} className=' text-slate-800' />
+             <Input id='kilos' type='number' onChange={(e)=>setKilo(Number(e.target.value))}  value={kilo} className=' text-slate-800' />
             </div>
              <Popover>
             <PopoverTrigger asChild>
@@ -83,25 +81,26 @@ import {
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={SetDate}
+                onSelect={(date)=>SetDate(date)}
                 initialFocus
               />
             </PopoverContent>
           </Popover>
           </div>
           <div>
-            <Label htmlFor="empoyee-list">Choose Employee</Label>
-          <Select >
+            <Label htmlFor="empoyee-list">Select employee</Label>
+      <Select  onValueChange={handleValueChage} >
         <SelectTrigger className="w-full " id="employee-list">
           <SelectValue placeholder="Select Name"  />
+           <span className='mr-auto'>{value.username}</span>
+           
         </SelectTrigger>
-        <SelectContent className=''>
-          <SelectItem value="light" className="  active:text-green-800" onClick={()=>setUserInfo({id:"id",username:'username'})}>Diana</SelectItem>
-          <SelectItem value="dark" className=" active:text-green-800">Nancy</SelectItem>
-          <SelectItem value="system" className=" active:text-green-800">Joan</SelectItem>
+        <SelectContent className="shadow-popover-foreground">
+          {userNameID.map(({id,username})=><SelectItem key={id} value={{id,username}} className="  active:text-green-800" >{username}</SelectItem>)}
         </SelectContent>
       </Select>
       
+
           </div>
           <div className='w-full flex justify-between gap-2'>
             <Button className='flex-1 bg-transparent hover:bg-green-100 text-slate-800  active:bg-green-800 active:text-white'>Cancel</Button>
