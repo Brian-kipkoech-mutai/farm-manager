@@ -15,20 +15,21 @@ import {
     TableRow,
   } from "@/components/ui/table"
   
- const Payouts=()=>{
+ const PayoutsPs=({cleandData})=>{
 
   return(
+    
     <div>
   
   <Accordion type="single" collapsible className="mx-auto max-w-sm m-2">
    {
-    Array.from(['Daizy','Joan','Nancy,','daizy'],(name,i)=>(
-      <AccordionItem value={`item${i+1}`}  >
-    <AccordionTrigger  className=''>{name} <span className="ml-auto pr-2">sh300</span></AccordionTrigger>
+     cleandData.map(({ username,totaLPrice,eachDayData})=>(
+       <AccordionItem value={username}  >
+    <AccordionTrigger  className=''>{username} <span className="ml-auto pr-2">sh{totaLPrice.toLocaleString('en-US')}</span></AccordionTrigger>
   
     <AccordionContent>
     <Table>
-  <TableCaption>{name}'s record for th past seven days</TableCaption>
+  <TableCaption>{username}'s record for th past seven days</TableCaption>
   <TableHeader>
     <TableRow className=''> 
       <TableHead className="w-[100px]">Day</TableHead>
@@ -40,21 +41,23 @@ import {
   </TableHeader>
   <TableBody>
     {
-      Array.from({length:7},()=>(
-        <TableRow>
-        <TableCell className="font-medium text-slate-800">Monday</TableCell>
-        <TableCell className="font-base">30kg</TableCell>
+      eachDayData.map(({day,kilo,price})=>(
+      
+        <TableRow key={day}>
+        <TableCell className="font-medium text-slate-800">{day}</TableCell>
+        <TableCell className="font-base">{kilo}kg</TableCell>
         <TableCell className="font-base text-slate-800">{new Date().toDateString()}</TableCell>
-        <TableCell className="text-right font-medium ">sh200</TableCell>
+        <TableCell className="text-right font-medium ">sh{price.toLocaleString('en-US')}</TableCell>
       </TableRow>
       ))
+      
     }
   </TableBody>
 </Table>
 
     </AccordionContent>
   </AccordionItem>
-    ))
+     ))
    }
 </Accordion>
  </div>
@@ -62,4 +65,4 @@ import {
 
     
  }
- export default Payouts;
+ export default PayoutsPs;

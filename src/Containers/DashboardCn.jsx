@@ -45,7 +45,7 @@ import { data } from "autoprefixer";
     }).filter(data=>data!=null)
    })
 
-    console.log(MappedData);
+    
     const CleaneData=MappedData.map((data,i)=>{
         const day=daysOfTheWeek[i];
 const kilos=data.map(data=>data[day].kilo).reduce((acc,kilo)=>acc+Number(kilo),0);

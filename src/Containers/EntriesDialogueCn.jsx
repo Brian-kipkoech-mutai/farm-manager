@@ -14,6 +14,7 @@ const EntriesDialogueCn=()=>{
  
      
   const hadleSubmit=()=>{
+    const currentDate=date.toString().substring(0,15);
   
     const { username}=value;
     if(!username){
@@ -34,10 +35,10 @@ const EntriesDialogueCn=()=>{
         if(storedId==currentId){
           const updatedKilos = {
             ...dailyKilos,
-            [date]: dailyKilos[date]
+            [currentDate]: dailyKilos[currentDate]
               ? {
-                  kilo:  Number(dailyKilos[date].kilo) + Number(kilo),
-                  price:  Number(dailyKilos[date].price) + Number(price),
+                  kilo:  Number(dailyKilos[currentDate].kilo) + Number(kilo),
+                  price:  Number(dailyKilos[currentDate].price) + Number(price),
                 }
               : newKilos_price,
           };

@@ -24,7 +24,7 @@ import {
    PopoverTrigger,
  } from "@/components/ui/popover"
  
- import { useEffect, useState } from 'react';
+ 
  import {
     Select,
     SelectContent,
@@ -73,7 +73,7 @@ import {
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date{date}</span>}
+                {date ? format(date, "PPP") : <span>Pick a date{date }</span>}
               </Button>
              </div>
             </PopoverTrigger>
@@ -81,7 +81,7 @@ import {
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={(date)=>SetDate(date)}
+                onSelect={SetDate}
                 initialFocus
               />
             </PopoverContent>
