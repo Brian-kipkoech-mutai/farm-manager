@@ -10,7 +10,7 @@ const PayoutsCs=()=>{
     const daysOfTheWeek=[
         'Mon',
         'Tue',
-        'wed',
+        'Wed',
         'Thu',
         'Fri',
         'Sat',
@@ -35,11 +35,12 @@ const PayoutsCs=()=>{
     const mappedData=dataSet.map(({username,dailyKilos})=>{
     const totaLPrice=Object.values(dailyKilos).map(({price})=>Number(price)).reduce((acc,price)=>acc+price,0);
     const eachDayData=daysOfTheWeek.map((currentDay,i)=>{
-    
+    const key=Object.keys(dailyKilos).find((day=>day.includes(currentDay)))
      return{
       day:completeDaysOfTheWWeek[i],
-      kilo:dailyKilos[Object.keys(dailyKilos).find((day=>day.includes(currentDay)))]?.kilo||null,
-      price:dailyKilos[Object.keys(dailyKilos).find((day=>day.includes(currentDay)))]?.price||null
+      kilo:dailyKilos[key] ?.kilo||null,
+      price:dailyKilos[key]?.price||null,
+      date:key
  
      }
     }).filter(({kilo})=>kilo!=null);

@@ -36,7 +36,7 @@ import {
  
 
 
-  const EntryDialogue=({kilo, date,setKilo,SetDate,handleValueChage,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,value})=>{
+  const EntryDialogue=({kilo, date,setKilo,SetDate,handleValueChage,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,value,handleQulityChange,erroMsg})=>{
      
      return(
 
@@ -50,7 +50,7 @@ import {
           <DialogHeader className='flex  flex-col gap-2 '>
             <DialogTitle className=' text-left'>Daily harvest</DialogTitle>
             <DialogDescription>
-               Add today's harvest below
+               {erroMsg? <div className='font-bold text-red-600 underline uppercase underline-offset-4 w-fit mx-auto'>{erroMsg}</div>:"Add today's harvest below"}  
             </DialogDescription>
           </DialogHeader>
           <div className='flex flex-col gap-2'>
@@ -102,10 +102,25 @@ import {
       
 
           </div>
+          <div>
+          <Label htmlFor="quality">Select Quality</Label>
+      <Select  onValueChange={handleQulityChange} >
+        <SelectTrigger className="w-full " id="quality">
+          <SelectValue placeholder="Select quality"  />
+           <span className='mr-auto'>{null}</span>
+           
+        </SelectTrigger>
+        <SelectContent className="shadow-popover-foreground">
+        <SelectItem key={'k.t.d.a'} value={9} className="  active:text-green-800" >{'K.T.D.A'}</SelectItem>
+        <SelectItem key={'siomo'} value={7} className="  active:text-green-800" >{'Siomo'}</SelectItem>
+        </SelectContent>
+      </Select>
+      
+          </div>
           <div className='w-full flex justify-between gap-2'>
             <Button className='flex-1 bg-transparent hover:bg-green-100 text-slate-800  active:bg-green-800 active:text-white'>Cancel</Button>
             <Button className='flex-1 active:bg-green-800' onClick={()=>{
-              setDialogueState(false)
+               
               hadleSubmit()}
             }>Submit</Button>
           </div>

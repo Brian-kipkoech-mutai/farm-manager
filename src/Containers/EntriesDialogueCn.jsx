@@ -11,6 +11,8 @@ const EntriesDialogueCn=()=>{
     const[value,setValue]=useState({})
     const[userNameID,setUserandId]=useState([])
     const[isDialogueOpen,setDialogueState]=useState(false)
+    const[quality,setQuality]=useState(null);
+    const [erroMsg,setErroMsg]=useState('');
  
      
   const hadleSubmit=()=>{
@@ -18,10 +20,14 @@ const EntriesDialogueCn=()=>{
   
     const { username}=value;
     if(!username){
-      alert('choose the employer  or Add one here..(button to profile page)')
+      setErroMsg('Pleas select Employee username!')
+       return;
+    }
+    if(!quality){
+      setErroMsg('please  select Quality!')
       return;
     }
-    let price=8*kilo;
+    let price=quality*kilo;
       
        const dataSet= JSON.parse(localStorage.getItem('dataSet'));
 
@@ -53,13 +59,18 @@ const EntriesDialogueCn=()=>{
       setValue('')
       setKilo('')
 
-
+      setDialogueState(false)
   }
   const handleValueChage=(valueCaptured)=> {
-    
-  
+    setErroMsg(null)
+    erroMsg=='Pleas select Employee username!'&&setErroMsg(null);
     setValue(valueCaptured)
+
     
+  }
+  const handleQulityChange=(value)=>{
+    setQuality(value)
+     erroMsg=='please  select Quality!'&&setErroMsg(null);
   }
   
    useEffect(()=>{
@@ -70,7 +81,7 @@ const EntriesDialogueCn=()=>{
 
     return(
   <EntryDialoguePs
-  {...{kilo, date,setKilo,SetDate,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,handleValueChage,value}}
+  {...{kilo, date,setKilo,SetDate,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,handleValueChage,value,handleQulityChange,erroMsg}}
   />
     )
 }

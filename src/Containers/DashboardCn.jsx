@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DashBoardPs from "../components/DashBoardPs"
-import { data } from "autoprefixer";
+
 
 
 
@@ -12,7 +12,7 @@ import { data } from "autoprefixer";
     const daysOfTheWeek=[
         'Mon',
         'Tue',
-        'wed',
+        'Wed',
         'Thu',
         'Fri',
         'Sat',

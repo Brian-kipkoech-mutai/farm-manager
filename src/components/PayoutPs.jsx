@@ -41,12 +41,12 @@ import {
   </TableHeader>
   <TableBody>
     {
-      eachDayData.map(({day,kilo,price})=>(
+      eachDayData.map(({day,kilo,price,date})=>(
       
         <TableRow key={day}>
         <TableCell className="font-medium text-slate-800">{day}</TableCell>
         <TableCell className="font-base">{kilo}kg</TableCell>
-        <TableCell className="font-base text-slate-800">{new Date().toDateString()}</TableCell>
+        <TableCell className="font-base text-slate-800">{date}</TableCell>
         <TableCell className="text-right font-medium ">sh{price.toLocaleString('en-US')}</TableCell>
       </TableRow>
       ))
