@@ -24,12 +24,12 @@ import {
   <Accordion type="single" collapsible className="mx-auto max-w-sm m-2">
    {
      cleandData.map(({ username,totaLPrice,eachDayData})=>(
-       <AccordionItem value={username}  >
+       <AccordionItem value={username} key={username}  >
     <AccordionTrigger  className=''>{username} <span className="ml-auto pr-2">sh{totaLPrice.toLocaleString('en-US')}</span></AccordionTrigger>
   
     <AccordionContent>
     <Table>
-  <TableCaption>{username}'s record for th past seven days</TableCaption>
+  <TableCaption>{username}'s record for the past seven days</TableCaption>
   <TableHeader>
     <TableRow className=''> 
       <TableHead className="w-[100px]">Day</TableHead>

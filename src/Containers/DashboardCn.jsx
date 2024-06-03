@@ -30,7 +30,10 @@ import DashBoardPs from "../components/DashBoardPs"
 
     
     useEffect(()=>{
-   const dataSet= JSON.parse(localStorage.getItem('dataSet'));
+        
+        
+   const dataSet=  JSON.parse(localStorage.getItem('dataSet'))||[]   ;
+   console.log('dataSet',dataSet);
    const kilos=dataSet.map(({dailyKilos})=>dailyKilos);
    const MappedData=daysOfTheWeek.map((day)=>{
     return kilos.map((dataObject)=>{

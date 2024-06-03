@@ -1,6 +1,11 @@
 import ProfilePs from "@/components/ProfilePs";
 import { useEffect, useState } from "react";
 
+if(!localStorage.getItem('dataSet')){
+    const dataSet=[];
+    localStorage.setItem('dataSet', JSON.stringify(dataSet))
+ }
+ console.log('callling yea');
 
 const ProfileCn=()=>{
 //  localStorage.clear()
@@ -38,10 +43,7 @@ const ProfileCn=()=>{
                 dailyKilos:{}
                 }
                 
-             if(!localStorage.getItem('dataSet')){
-                const dataSet=[];
-                localStorage.setItem('dataSet', JSON.stringify(dataSet))
-             }
+             
           
               
              

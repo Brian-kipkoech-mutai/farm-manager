@@ -8,8 +8,8 @@ import {
   } from "@/components/ui/dialog"
   import { Label } from "@radix-ui/react-label"
   import { Input } from "./ui/input"
-  import { Button } from "./ui/button"
-import { useState } from "react"
+  import { Button } from "@/components/ui/button"
+ import React, { useState } from "react"
   
 
 
@@ -17,10 +17,11 @@ import { useState } from "react"
     const [isOpen,setOpen]=useState(false)
    
     return(
-        <Dialog className='max-w-sm ' open={isOpen} onOpenChange={setOpen} >
-        <DialogTrigger>
-        <Button  className='active:bg-green-800 mb-3'onClick={()=> setOpen(true)} >Add new employee</Button>
-       
+       <div> 
+                <Dialog className='max-w-sm ' open={isOpen} onOpenChange={setOpen} >
+        <DialogTrigger  className='active:bg-green-800 mb-3 bg-green-600 p-2 px-4 rounded-md text-white font-semibold' onClick={()=> setOpen(true)}>
+     
+        Add new employee
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -44,7 +45,11 @@ import { useState } from "react"
           </div>
         </DialogContent>
       </Dialog>
-    )
+
+       
+      </div>
+     )
+
   }
 
   export default AddEmployeeDialogue;

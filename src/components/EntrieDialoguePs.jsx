@@ -36,7 +36,7 @@ import {
  
 
 
-  const EntryDialogue=({kilo, date,setKilo,SetDate,handleValueChage,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,value,handleQulityChange,erroMsg})=>{
+  const EntryDialoguePs=({kilo, date,setKilo,SetDate,handleValueChage,hadleSubmit,userNameID,isDialogueOpen,setDialogueState,value,handleQulityChange,erroMsg})=>{
      
      return(
 
@@ -50,7 +50,7 @@ import {
           <DialogHeader className='flex  flex-col gap-2 '>
             <DialogTitle className=' text-left'>Daily harvest</DialogTitle>
             <DialogDescription>
-               {erroMsg? <div className='font-bold text-red-600 underline uppercase underline-offset-4 w-fit mx-auto'>{erroMsg}</div>:"Add today's harvest below"}  
+               {erroMsg? <span className='font-bold text-red-600 underline uppercase underline-offset-4 w-fit mx-auto block'>{erroMsg}</span>:"Add today's harvest below"}  
             </DialogDescription>
           </DialogHeader>
           <div className='flex flex-col gap-2'>
@@ -130,4 +130,4 @@ import {
       
     )
   }
-  export default EntryDialogue;
+  export default EntryDialoguePs;

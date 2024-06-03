@@ -13,7 +13,7 @@ const DeleteDialoguePs=({username,userId,handleDelete})=>{
   const[isOpen,setOpen]=useState(false)
     return(
 <Dialog open={isOpen} onOpenChange={setOpen}   >
-  <DialogTrigger><Button className='hover:bg-red-600 bg-red-500 active:bg-red'>Delete</Button></DialogTrigger>
+  <DialogTrigger className='hover:bg-red-600 bg-red-500 active:bg-red text-white  px-4 py-2 rounded-md'> Delete </DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Are you absolutely sure?</DialogTitle>

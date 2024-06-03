@@ -28,8 +28,8 @@ const PayoutsCs=()=>{
 
     
    useEffect(()=>{
-    const dataSet= JSON.parse(localStorage.getItem('dataSet'));
-   
+    const dataSet= JSON.parse(localStorage.getItem('dataSet'))||[];
+       
  
 
     const mappedData=dataSet.map(({username,dailyKilos})=>{
