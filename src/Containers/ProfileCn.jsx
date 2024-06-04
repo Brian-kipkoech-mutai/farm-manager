@@ -61,14 +61,16 @@ const ProfileCn=()=>{
         
         }
     const handleDelete= async(id)=>{
+        console.log('called  delete');
+        console.log(id);
     
-         ; const dataSet=await dataIndb()
+        const dataSet=await dataIndb()
         const filterdData=dataSet.filter(({id:userId})=> userId!=id);
 
        
         
             await setDocument(filterdData);
-         setUsersData( filterdData)
+         setUsersData(await userFilterdData())
         
          
     }

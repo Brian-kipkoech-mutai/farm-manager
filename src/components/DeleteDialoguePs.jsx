@@ -27,6 +27,7 @@ const DeleteDialoguePs=({username,userId,handleDelete})=>{
        onClick={()=> {
         setOpen(false)
         handleDelete(userId)
+        console.log('user id ,',userId);
        }}
       >Continue</Button>
     </div>
