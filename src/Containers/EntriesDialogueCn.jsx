@@ -75,10 +75,13 @@ const EntriesDialogueCn=()=>{
      erroMsg=='please  select Quality!'&&setErroMsg(null);
   }
   
-   useEffect(async()=>{
-   const users= await getDocument()||[];
-   const userNameID= users.map(({id,username})=>({id,username}))
-      setUserandId(userNameID)
+   useEffect(()=>{
+   const fetchDt=async()=>{
+    const users= await getDocument()||[];
+    const userNameID= users.map(({id,username})=>({id,username}))
+       setUserandId(userNameID)
+   }
+   fetchDt()
    },[isDialogueOpen])
 
     return(

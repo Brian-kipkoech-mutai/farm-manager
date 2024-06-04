@@ -2,14 +2,11 @@ import ProfilePs from "@/components/ProfilePs";
 import { useEffect, useState } from "react";
 import { setDocument, getDocument } from "../fetch_set_Data";
 
-if(!localStorage.getItem('dataSet')){
-    const dataSet=[];
-    localStorage.setItem('dataSet', JSON.stringify(dataSet))
- }
+ 
  
 
 const ProfileCn=()=>{
-//  localStorage.clear()
+ 
 
 
      const[inputValue,setValue]=useState('');
@@ -51,7 +48,7 @@ const ProfileCn=()=>{
             userTemplate.username=inputValue;
         
             const updatedDataSet=[...dataSet,userTemplate];
-            localStorage.setItem('dataSet',JSON.stringify(updatedDataSet))
+           
               await setDocument(updatedDataSet);
               setUsersData(updatedDataSet)
               setValue('')
@@ -69,7 +66,7 @@ const ProfileCn=()=>{
         const filterdData=dataSet.filter(({id:userId})=> userId!=id);
 
        
-        localStorage.setItem('dataSet',JSON.stringify(filterdData))
+        
             await setDocument(filterdData);
          setUsersData( filterdData)
         

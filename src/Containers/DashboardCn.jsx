@@ -32,47 +32,50 @@ import { getDocument } from "@/fetch_set_Data"
     ]
 
     
-    useEffect(async()=>{
+    useEffect(()=>{
         // 
          
         // 
-        console.log('running  queries');
-   const dataSet= await getDocument() ||[]   ;
- 
-   const kilos=dataSet.map(({dailyKilos})=>dailyKilos);
-   const MappedData=daysOfTheWeek.map((day)=>{
-    return kilos.map((dataObject)=>{
-        const keys =Object.keys(dataObject);
-        const key = keys.find((key)=>key.includes(day))
-    if(key){
-        return {[day]:dataObject[key]}
-    }
-    else{
-        return null
-    }
-    }).filter(data=>data!=null)
-   })
-
-    
-    const CleaneData=MappedData.map((data,i)=>{
-        const day=daysOfTheWeek[i];
-const kilos=data.map(data=>data[day].kilo).reduce((acc,kilo)=>acc+Number(kilo),0);
-const totalPrice=data.map(data=>data[day].price).reduce((acc,price)=>acc+Number(price),0);
-       return {
-          day: day,
-          kilos:kilos,
-          totalPrice:totalPrice
-
-        }
-    }).map((data,i)=>({...data,day:completeDaysOfTheWWeek[i]}))
+   const fetchdata =async()=>{
+    console.log('running  queries');
+    const dataSet= await getDocument() ||[]   ;
   
-    setFinalData(CleaneData)
-       
-    const PriceWeek=CleaneData.reduce((acc,{totalPrice})=>acc+Number(totalPrice),0);
-    setTotalPriceWeek(PriceWeek)
-     const totalKilosWeek= CleaneData.reduce((acc,{kilos})=>acc+Number(kilos),0);
-     setTotalKiloWeek(totalKilosWeek)
-
+    const kilos=dataSet.map(({dailyKilos})=>dailyKilos);
+    const MappedData=daysOfTheWeek.map((day)=>{
+     return kilos.map((dataObject)=>{
+         const keys =Object.keys(dataObject);
+         const key = keys.find((key)=>key.includes(day))
+     if(key){
+         return {[day]:dataObject[key]}
+     }
+     else{
+         return null
+     }
+     }).filter(data=>data!=null)
+    })
+ 
+     
+     const CleaneData=MappedData.map((data,i)=>{
+         const day=daysOfTheWeek[i];
+ const kilos=data.map(data=>data[day].kilo).reduce((acc,kilo)=>acc+Number(kilo),0);
+ const totalPrice=data.map(data=>data[day].price).reduce((acc,price)=>acc+Number(price),0);
+        return {
+           day: day,
+           kilos:kilos,
+           totalPrice:totalPrice
+ 
+         }
+     }).map((data,i)=>({...data,day:completeDaysOfTheWWeek[i]}))
+   
+     setFinalData(CleaneData)
+        
+     const PriceWeek=CleaneData.reduce((acc,{totalPrice})=>acc+Number(totalPrice),0);
+     setTotalPriceWeek(PriceWeek)
+      const totalKilosWeek= CleaneData.reduce((acc,{kilos})=>acc+Number(kilos),0);
+      setTotalKiloWeek(totalKilosWeek)
+ 
+   }
+   fetchdata()
     },[])
     
     
