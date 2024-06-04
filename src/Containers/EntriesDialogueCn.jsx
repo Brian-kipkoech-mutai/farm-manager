@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import EntryDialoguePs from "../components/EntrieDialoguePs"
+import { getDocument, setDocument } from "@/fetch_set_Data"
 
 
 
@@ -15,7 +16,7 @@ const EntriesDialogueCn=()=>{
     const [erroMsg,setErroMsg]=useState('');
  
      
-  const hadleSubmit=()=>{
+  const hadleSubmit= async()=>{
     const currentDate=date.toString().substring(0,15);
   
     const { username}=value;
@@ -29,7 +30,7 @@ const EntriesDialogueCn=()=>{
     }
     let price=quality*kilo;
       
-       const dataSet= JSON.parse(localStorage.getItem('dataSet'));
+       const dataSet= await getDocument();
 
       const newKilos_price={kilo,price}
       const{id:currentId}=value;
@@ -55,7 +56,8 @@ const EntriesDialogueCn=()=>{
         }
 
       })
-      localStorage.setItem('dataSet',JSON.stringify(updatedDataSet));
+       
+      await setDocument(updatedDataSet);
       setValue('')
       setKilo('')
 
@@ -73,8 +75,8 @@ const EntriesDialogueCn=()=>{
      erroMsg=='please  select Quality!'&&setErroMsg(null);
   }
   
-   useEffect(()=>{
-   const users= JSON.parse(localStorage.getItem('dataSet'))||[];
+   useEffect(async()=>{
+   const users= await getDocument()||[];
    const userNameID= users.map(({id,username})=>({id,username}))
       setUserandId(userNameID)
    },[isDialogueOpen])

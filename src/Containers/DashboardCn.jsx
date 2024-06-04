@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import DashBoardPs from "../components/DashBoardPs"
+import DashBoardPs from "../components/DashBoardPs";
+import { getDocument } from "@/fetch_set_Data"
+ 
+ 
 
 
 
@@ -29,11 +32,13 @@ import DashBoardPs from "../components/DashBoardPs"
     ]
 
     
-    useEffect(()=>{
-        
-        
-   const dataSet=  JSON.parse(localStorage.getItem('dataSet'))||[]   ;
-   console.log('dataSet',dataSet);
+    useEffect(async()=>{
+        // 
+         
+        // 
+        console.log('running  queries');
+   const dataSet= await getDocument() ||[]   ;
+ 
    const kilos=dataSet.map(({dailyKilos})=>dailyKilos);
    const MappedData=daysOfTheWeek.map((day)=>{
     return kilos.map((dataObject)=>{

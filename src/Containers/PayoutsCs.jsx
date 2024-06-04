@@ -1,4 +1,5 @@
 import PayoutsPs from "@/components/PayoutPs";
+import { getDocument } from "@/fetch_set_Data";
 import { useEffect, useState } from "react";
 
  
@@ -27,8 +28,10 @@ const PayoutsCs=()=>{
     ]
 
     
-   useEffect(()=>{
-    const dataSet= JSON.parse(localStorage.getItem('dataSet'))||[];
+   useEffect(async()=>{
+    const dataSet= await getDocument()||[];
+
+
        
  
 

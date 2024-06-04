@@ -1,18 +1,19 @@
 import ProfilePs from "@/components/ProfilePs";
 import { useEffect, useState } from "react";
+import { setDocument, getDocument } from "../fetch_set_Data";
 
 if(!localStorage.getItem('dataSet')){
     const dataSet=[];
     localStorage.setItem('dataSet', JSON.stringify(dataSet))
  }
- console.log('callling yea');
+ 
 
 const ProfileCn=()=>{
 //  localStorage.clear()
 
 
      const[inputValue,setValue]=useState('');
-     const[newUser,setUser]=useState('');
+     
       
      const [usersData,setUsersData]=useState([]);
      
@@ -21,16 +22,15 @@ const ProfileCn=()=>{
         setValue(target.value)
            }
   
-   const fetchData=()=>{
-            const dataSet= localStorage.getItem('dataSet');
-            const pasredData= JSON.parse(dataSet)||[];
-               
-            return pasredData;
-            }
-
-   const handleSubmit=()=>{
-     setUser(inputValue)
-            if(fetchData().find(({username})=>username==inputValue)){
+    
+    
+    const dataIndb=async()=>{
+        return  await getDocument()
+    }
+   const handleSubmit= async()=>{
+     
+      const dataSet=await dataIndb()
+            if( dataSet.find(({username})=>username==inputValue)){
                 alert(
                     'A user with the same username Already exist pleas choose a diffrent user name'
                 )
@@ -47,36 +47,46 @@ const ProfileCn=()=>{
           
               
              
-            userTemplate.id=`${fetchData().length}${inputValue}`;
+            userTemplate.id=`${dataSet.length}${inputValue}`;
             userTemplate.username=inputValue;
         
-            const updatedDataSet=[...fetchData(),userTemplate];
+            const updatedDataSet=[...dataSet,userTemplate];
             localStorage.setItem('dataSet',JSON.stringify(updatedDataSet))
+              await setDocument(updatedDataSet);
+              setUsersData(updatedDataSet)
+              setValue('')
          
         }
         
-        const userFilterdData=()=>{
-            return fetchData().map(({id:userId,username})=>({userId,username}))
+        const userFilterdData=async()=>{
+            const dataSet=await dataIndb()
+            return  dataSet.map(({id:userId,username})=>({userId,username}))
         
         }
-    const handleDelete=(id)=>{
-        console.log(id);
-         ;
-        const filterdData=fetchData().filter(({id:userId})=> userId!=id);
+    const handleDelete= async(id)=>{
+    
+         ; const dataSet=await dataIndb()
+        const filterdData=dataSet.filter(({id:userId})=> userId!=id);
+
        
         localStorage.setItem('dataSet',JSON.stringify(filterdData))
-         setUsersData(userFilterdData())
+            await setDocument(filterdData);
+         setUsersData( filterdData)
         
+         
     }
         
 
      useEffect(()=>{
-        
+        const fetchData = async () => {
+            setUsersData(await userFilterdData());
+        };
+        fetchData();
             
-        setUsersData(userFilterdData())
+         
 
 
-     },[newUser])
+     },[])
 
        
   
