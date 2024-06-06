@@ -8,7 +8,7 @@ import PayoutsCs from "./Containers/PayoutsCs";
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [loadingParent, SetLoadingParent] = useState(false);
+  const [loadingParent, SetLoadingParent] = useState(true);
 
   const handleBtnClick = (index) => {
     setActiveIndex(index);
