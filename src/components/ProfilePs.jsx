@@ -2,8 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ToggleTheme from "./toggleThemePs"
 import EmployeeDashboard from "./EmployeeDashboardPs"
 import AddEmployeeCn from "@/Containers/AddEmployeeCn"
+import { Skeleton } from "@/components/ui/skeleton" ;
+
  
-const ProfilePs =({usersData,handleSubmit,handleChange,inputValue,handleDelete})=>{
+const ProfilePs =({usersData,handleSubmit,handleChange,inputValue,handleDelete,errorMsg,isOpen,handleOpenState,handleCancel,loading})=>{
   console.log('userData',usersData);
   
   return(
@@ -28,12 +30,12 @@ const ProfilePs =({usersData,handleSubmit,handleChange,inputValue,handleDelete})
        </section>
        <section className="flex-1 overflow-auto flex flex-col ">
         <h2 className="text-center text-lg font-medium text-slate-800">Manage Workers</h2>
-         
-      <EmployeeDashboard {...{usersData,handleDelete}}/>
+         <EmployeeDashboard {...{usersData,handleDelete,loading}}/>
+ 
        </section>
        <section>
        <div className="w-fit mx-auto">
-       <AddEmployeeCn {...{handleSubmit,handleChange,inputValue}}/>
+       <AddEmployeeCn {...{handleSubmit,handleChange,inputValue,errorMsg,isOpen,handleOpenState,handleCancel}}/>
        </div>
         </section>
     </div>

@@ -2,13 +2,13 @@ import AddEmployeeDialogue from "@/components/AddEmployeeDialogue";
 
 
 
-const AddEmployeeCn=({handleSubmit,handleChange,inputValue})=>{
+const AddEmployeeCn=({handleSubmit,handleChange,inputValue,errorMsg,isOpen,handleOpenState,handleCancel})=>{
     
      
 
     return(
      <AddEmployeeDialogue
-     {...{handleChange,inputValue,handleSubmit}}
+     {...{handleChange,inputValue,handleSubmit,errorMsg,isOpen,handleOpenState,handleCancel}}
      />
     )
 }

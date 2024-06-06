@@ -44,7 +44,7 @@ const setDocument = async (data) => {
     }
 };
 
-getDocument();
+ 
   
 
   export {setDocument, getDocument};
