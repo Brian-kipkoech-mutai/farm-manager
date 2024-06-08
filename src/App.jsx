@@ -1,10 +1,11 @@
 import Nav from "./components/NavPs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProfileCn from "./Containers/ProfileCn";
 
 import DashboardCn from "./Containers/DashboardCn";
 import PayoutsCs from "./Containers/PayoutsCs";
+import weeklyDataErase from "./eraseWeeklyData";
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -15,6 +16,15 @@ function App() {
   const handleBtnClick = (index) => {
     setActiveIndex(index);
   };
+  useEffect(() => {
+
+    const DayCheck =async () => {
+      await weeklyDataErase()
+    }
+    
+    DayCheck()
+    
+  },[])
 
   return (
     <div className="h-svh flex  flex-col p-2">
