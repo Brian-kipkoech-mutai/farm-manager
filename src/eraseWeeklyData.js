@@ -1,4 +1,7 @@
- const eraseData = async () => {
+import { setDocument ,getDocument} from "./fetch_set_Data";
+
+     
+const eraseData = async () => {
    try {
      const dataSet = (await getDocument()) || [];
      const filteredData = dataSet.map((data) => {
