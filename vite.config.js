@@ -10,7 +10,7 @@
        registerType: "autoUpdate",
        manifest: {
          name: "Farm manager",
-         short_name: "F.M",
+         short_name: "Farm Manager",
          description: "A  farm tool to help  help ypu manage your employee !",
          theme_color: "#ffffff",
          icons: [
