@@ -28,6 +28,7 @@ const weeklyDataErase = async () => {
   } else {
     const nextDate = new Date(localStorage.getItem("nextEraseDate"));
     if (currentDate >= nextDate) {
+      console.log('deleting previous data ' ,{currentDate,nextDate});
       localStorage.setItem("nextEraseDate", nextSunady.toISOString());
       await eraseData();
     }
